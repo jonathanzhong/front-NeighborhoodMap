@@ -1,0 +1,27 @@
+{
+  "name": "front-NeighborhoodMap",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jonathanzhong/front-NeighborhoodMap",
+  "authors": [
+    "Jonathan Zhong <zhongyl0722@hotmail.com>"
+  ],
+  "description": "Front-end Project 5(Udacity)",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node",
+    "yui"
+  ],
+  "keywords": [
+    "Project5"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
