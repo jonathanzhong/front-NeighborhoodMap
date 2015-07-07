@@ -2,13 +2,16 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
 	<title>SF Neighborhood Map | Discovery & Adventure</title>
+
+    <link rel="shortcut icon" href="img/icon.ico">
 
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <script type="text/javascript"
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD59z3GgNpbZT3ombYg45o6yrNX-RdgkHU">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD59z3GgNpbZT3ombYg45o6yrNX-RdgkHU&libraries=places">
     </script>
 </head>
 <body>
@@ -21,7 +24,22 @@
     <div class="row">
         <div id="locationList" class="col-xs-6 panel panel-default fixed-panel">
             <div class="panel-heading">Recommended Places</div>
-            <div id="locationEntry" class="panel-body "></div>
+            <div id="locationEntry" class="panel-body ">
+                <h3 class="locationName"></h3>
+                <p class="locationStreet"></p>
+                <button type="button" class="btn btn-default">Show Location on Map</button>
+
+                <script type="text/html" id='controlPlacesListTemplate'>
+                    <div class="col-xs-12 controlPlacesListEntry">
+                        <h3 data-bind="text: name">Location Name</h3>
+                        <p><span data-bind="text: vicinity"></span>Location Address</p>
+                        <div class="btn-showMarker">
+                            <a href="#" class="btn btn-info btn-xs" data-bind="click: $parent.showMoreButtonClicked">Show Me On Map</a>
+                        </div>
+                    </div>
+                </script>
+
+            </div>
         </div>
         <div id="wikiList" class="col-xs-6 panel panel-default fixed-panel">
             <div class="wikiInfo panel-heading">Explore Interesting Stuffs</div>
