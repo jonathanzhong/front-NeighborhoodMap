@@ -1,6 +1,9 @@
 var NApp = NApp || {};
 
 
+/**
+ * Map objects
+ */
 NApp.map;
 NApp.mapCenterlocation = new google.maps.LatLng(37.779179, -122.419649);
 NApp.geocoder = new google.maps.Geocoder();
@@ -27,5 +30,5 @@ NApp.mapRequest = {
     type: ['neighborhood']
 };
 NApp.mapMarker = [];
+NApp.markerLocations = null;
 NApp.infowindow;
-//NApp.service = new google.maps.places.PlacesService(NApp.map);

@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0">
-	<title>SF Neighborhood Map | Discovery & Adventure</title>
+	<title>Neighborhood Map | Discovery & Adventure</title>
 
     <link rel="shortcut icon" href="img/icon.ico">
 
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <script type="text/javascript"
@@ -20,23 +21,26 @@
 
 <div id="content" class="container container-fluid">
     <div id="filter" class="row">
-        <input class="inputBox form-control" placeholder="Filter the below places">
+        <input class="inputBox form-control" data-bind="inputSearchBox" placeholder="Filter the below places">
     </div>
 
     <div class="row">
         <div id="locationList" class="col-xs-6 panel panel-default fixed-panel">
             <div class="panel-heading">Neighborhood Places</div>
+
             <div class="panel-body ">
 
-                <!-- <script type="text/html" id='locationListTemplate'>
-                    <div class="col-xs-12 locationListEntry">
+                <div data-bind="template: { name:'locationListsTemplate', foreach: locationLists}"></div>
+
+                <script type="text/html" id='locationListsTemplate'>
+                    <div class="col-xs-12 locationListsEntry">
                         <h3 data-bind="text: name">Location Name</h3>
-                        <p><span data-bind="text: vicinity"></span>Location Address</p>
+                        <p>Address: <span data-bind="text: vicinity"></span></p>
                         <div class="btn-showMarker">
-                            <a href="#" class="btn btn-info btn-xs" data-bind="click: $parent.showMoreButtonClicked">Show Me On Map</a>
+                            <a href="#" class="pure-button pure-button-active pure-button-primary" data-bind="click: $parent.showMoreButtonClicked">Show Me On Map</a>
                         </div>
                     </div>
-                </script> -->
+                </script>
 
             </div>
         </div>

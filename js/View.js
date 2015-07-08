@@ -1,8 +1,17 @@
 var NApp = NApp || {};
 
+/**
+ * Render google map, markers and search information to the page.
+ * @MapView
+ */
+
 var MapView = function() {
 	var self = this;
 
+
+    /**
+     * initial map
+     */
     self.initialize = function() {
 		NApp.map = new google.maps.Map(document.getElementById('map-canvas'), NApp.mapOption);
 		NApp.infowindow = new google.maps.InfoWindow();
@@ -15,11 +24,21 @@ var MapView = function() {
 
 	self.callback = function(results, status) {
 		if(status == google.maps.places.PlacesServiceStatus.OK) {
-			for (var i = 0; i < results.length; i++) {
-				self.createMarker(results[i]);
-
-			}
             NApp.mapMarker.push(results);
+
+            //it is an array inside of an array.
+            NApp.markerLocations = NApp.mapMarker[0];
+
+
+
+			for (var i = 0; i < results.length; i++) {
+				self.createMarker(NApp.markerLocations[i]);
+			}
+
+            NApp.ViewModel.locationLists(NApp.markerLocations);
+            //console.log(NApp.ViewModel.locationLists());
+            NApp.ViewModel.locationListsAll = results;
+
 		}
 	};
 
@@ -42,6 +61,7 @@ var MapView = function() {
                 strokeWeight: 1
             }
         });
+
 
 
         google.maps.event.addListener(marker, 'click', function() {
@@ -76,10 +96,27 @@ var MapView = function() {
                 setTimeout(function(){ marker.setAnimation(null); }, 750);
             }
         });
-	};
+
+    };
 
 
+    self.setAllMap = function(map) {
+        for (var i = 0; i < NApp.markerLocations.length; i++) {
+            NApp.markerLocations[i].setMap(map);
+        }
+    };
+    //Removes the markers from the map, but keeps them in the array.
+    self.clearMarkers = function() {
+        self.sefAllMap(null);
+    };
+    //Deletes all markers in the array by removing references to them.
+    self.deleteMarkers = function() {
+        self.clearMarkers();
+        NApp.markerLocations = [];
+
+    };
+
+    //Responsive map with JavaScript;
+    google.maps.event.addDomListener(window, 'resize', self.initialize);
     google.maps.event.addDomListener(window, 'load', self.initialize);
 };
-
-ko.applyBindings(MapView);
