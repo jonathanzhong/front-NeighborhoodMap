@@ -19,25 +19,24 @@
 <div id="map-canvas"></div>
 
 <div id="content" class="container container-fluid">
-    <div id="filter" class="row"><input placeholder="Filter the below places"></div>
+    <div id="filter" class="row">
+        <input class="inputBox form-control" placeholder="Filter the below places">
+    </div>
 
     <div class="row">
         <div id="locationList" class="col-xs-6 panel panel-default fixed-panel">
-            <div class="panel-heading">Recommended Places</div>
-            <div id="locationEntry" class="panel-body ">
-                <h3 class="locationName"></h3>
-                <p class="locationStreet"></p>
-                <button type="button" class="btn btn-default">Show Location on Map</button>
+            <div class="panel-heading">Neighborhood Places</div>
+            <div class="panel-body ">
 
-                <script type="text/html" id='controlPlacesListTemplate'>
-                    <div class="col-xs-12 controlPlacesListEntry">
+                <!-- <script type="text/html" id='locationListTemplate'>
+                    <div class="col-xs-12 locationListEntry">
                         <h3 data-bind="text: name">Location Name</h3>
                         <p><span data-bind="text: vicinity"></span>Location Address</p>
                         <div class="btn-showMarker">
                             <a href="#" class="btn btn-info btn-xs" data-bind="click: $parent.showMoreButtonClicked">Show Me On Map</a>
                         </div>
                     </div>
-                </script>
+                </script> -->
 
             </div>
         </div>
@@ -50,6 +49,8 @@
 
 <script src="bower_components/knockout/dist/knockout.js"></script>
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="js/app.js"></script>
+<script src="js/Model.js"></script>
+<script src="js/View.js"></script>
+<script src="js/ViewModel.js"></script>
 </body>
 </html>

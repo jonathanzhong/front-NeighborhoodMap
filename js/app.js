@@ -6,7 +6,6 @@ var infowindow;
 var service;
 var geocoder = new google.maps.Geocoder();
 
-
 function initialize() {
     var location = new google.maps.LatLng(37.779179, -122.419649);
 
@@ -28,8 +27,7 @@ function initialize() {
         ]
     };
 
-    map = new google.maps.Map(document.getElementById('map-canvas'),
-        mapOptions);
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
     var request = {
         location: location,
@@ -97,6 +95,7 @@ function createMarker(place) {
     google.maps.event.addListener(marker, 'click', function() {
         var placeName = place.name;
         var searchEntry = $('#wikiEntry');
+
         var searchUrl = 'http://api.duckduckgo.com/?q='+ placeName +'&format=json';
         infowindow.setContent('<h3>'+ placeName +'<p>'+ contentString +'</p></h3>');
         infowindow.open(map, this);
@@ -119,25 +118,5 @@ function createMarker(place) {
 
 console.log(google.maps);
 
-
-
-
-/*$(function loadData() {
-    var wikiEntry = $('#wikiEntry');
-    var location0= "San%20Francisco%20City%20Hall";
-    var wikiUrl = 'http://api.duckduckgo.com/?q='+ location0 +'&format=json';
-    $.ajax({
-        url:wikiUrl,
-        async:true,
-        dataType: "jsonp",
-        success: function(response) {
-            console.log(response);
-            var title = response.Heading;
-            var text = response.Abstract;
-            var img = response.Image;
-            wikiEntry.append('<h3>'+ title +'</h3><div>'+ text +'<img src="'+ img +'" alt="wiki img"></div>');
-        }
-    })
-});*/
 
 google.maps.event.addDomListener(window, 'load', initialize);
