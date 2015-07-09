@@ -1,17 +1,17 @@
-html, body, #map-canvas {
+html,
+body,
+#map-canvas {
     height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: 'Lato', sans-serif;;
+    font-family: "Lato", sans-serif;;
 }
 
-#map-canvas {
+.mapCanvas {
 	position: relative;
 	width: 100%;
-	z-index: 0;
+    z-index: 0;
 }
 
-#content {
+.locationInfoContent {
 	position: absolute;
 	bottom: 10px;
 }
@@ -22,7 +22,7 @@ html, body, #map-canvas {
     height: 3vh;
 }
 
-#locationList {
+.locationLists {
     float: left;
     background-color: whitesmoke;
     width: 40%;
@@ -30,7 +30,7 @@ html, body, #map-canvas {
     height: 300px;
 }
 
-#wikiList {
+.wikiLists {
     float: right;
     background-color: whitesmoke;
     width: 55%;
@@ -39,7 +39,7 @@ html, body, #map-canvas {
 
 }
 
-#wikiEntry {
+.wikiInfo {
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -66,14 +66,42 @@ img {
 
 }
 
-/* iPhone */
 @media only screen
+and (max-width: 700px) {
+    .locationLists {
+        float: none;
+        height: 150px;
+        width: auto;
+        margin-right: 15px;
+        margin-bottom: 5px;
+        font-size: 10pt;
+    }
+    .wikiLists {
+        float: none;
+        height: 150px;
+        width: auto;
+        margin-right: 15px;
+        font-size: 10pt;
+    }
+    .inputBox {
+        margin-bottom: 5px;
+        height: 3vh;
+        width: 93%;
+    }
+    .locationInfoContent {
+        margin-left: 45px;
+        width: 90%;
+    }
+}
+
+/* iPhone */
+@media only screen 
 and (min-device-width : 375px)
 and (max-device-width : 667px) {
-    #content {
+    .locationInfoContent {
         margin-right: 10px;
     }
-    #locationList {
+    .locationLists {
         float: none;
         height: 150px;
         width: auto;
@@ -87,7 +115,7 @@ and (max-device-width : 667px) {
         font-size: 12pt;
     }
 
-    #wikiList {
+    .wikiLists {
         float: none;
         height: 150px;
         width: auto;
@@ -113,16 +141,16 @@ and (max-device-width : 667px) {
 and (min-device-width : 375px)
 and (max-device-width : 667px)
 and (orientation : landscape) {
-    #content {
+    .locationInfoContent {
         width: 650px;
         height: 170px;
     }
-    #locationList {
+    .locationLists {
         float: left;
         width: 40%;
 
     }
-    #wikiList {
+    .wikiLists {
         float: right;
         width: 45%;
 
@@ -141,8 +169,8 @@ and (orientation : landscape) {
 /* iPad */
 @media only screen
 and (min-device-width : 768px)
-and (max-device-width : 1024px)  {
-    #content {
+and (max-device-width : 1024px) {
+    .locationInfoContent {
         margin-left: 35px;
         margin-bottom: 5px;
     }
@@ -156,14 +184,14 @@ and (max-device-width : 1024px)  {
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : portrait) {
-    #content {
+    .locationInfoContent {
         width: 92%;
     }
 }
 
 @media only screen
 and (min-device-width: 1024px){
-    #content {
+    .locationInfoContent {
         margin-left: 10%;
         margin-right: 10%;
     }

@@ -18,15 +18,15 @@
 </head>
 <body>
 
-<div id="map-canvas"></div>
+<div id="map-canvas" class ="mapCanvas"></div>
 
-<div id="content" class="container container-fluid">
+<div id="content" class="container container-fluid locationInfoContent">
     <div id="filter" class="row">
         <input value="" class="inputBox form-control" data-bind="value: inputSearchBox, valueUpdate: 'afterkeydown'" placeholder="Filter the below places">
     </div>
 
     <div class="row">
-        <div id="locationList" class="col-xs-6 panel panel-default fixed-panel">
+        <div id="locationList" class="col-xs-6 panel panel-default fixed-panel locationLists">
 
             <div class="panel-heading">Neighborhood Places</div>
 
@@ -48,7 +48,7 @@
 
             </div>
         </div>
-        <div id="wikiList" class="col-xs-6 panel panel-default fixed-panel">
+        <div id="wikiList" class="col-xs-6 panel panel-default fixed-panel wikiLists">
             <div class="wikiInfo panel-heading">Explore Interesting Stuffs</div>
             <div  id="wikiEntry" class="wikiInfo panel-body "></div>
         </div>
@@ -57,12 +57,9 @@
 
 <script src="bower_components/knockout/dist/knockout.js"></script>
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
-
 <script src="js/Model.js"></script>
 <script src="js/View.js"></script>
 <script src="js/ViewModel.js"></script>
-
-
 
 </body>
 </html>

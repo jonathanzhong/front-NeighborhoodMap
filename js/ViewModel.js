@@ -1,5 +1,5 @@
 var NApp = NApp || {};
-
+    'use strict';
 /**
  * render the location list to div and show the marker and information
  * when click on button.

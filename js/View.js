@@ -29,7 +29,7 @@ var MapView = function() {
             //it is an array inside of an array.
             NApp.markerLocations = NApp.mapMarker[0];
 
-			for (var i = 0, len = results.length; i < len; i++) {
+			for (var i = 0, len = results.length ; i < len; i++) {
 				self.createMarker(NApp.markerLocations[i]);
 			}
 
@@ -90,7 +90,7 @@ var MapView = function() {
         var searchEntry = $('#wikiEntry');
         var searchUrl = 'http://api.duckduckgo.com/?q='+ placeName +'&format=json';
         var searchRequestTimeout = setTimeout(function() {
-            searchEntry.text("fail to get related information");
+            searchEntry.append('<p>fail to get related information</p>');
         }, 8000);
 
         $.ajax({
@@ -129,7 +129,7 @@ var MapView = function() {
     //Deletes all markers in the array by removing references to them.
     self.deleteMarkers = function() {
         self.clearMarkers();
-        NApp.markers = new Array();
+        NApp.markers = [];
     };
 
     self.setMapCenter = function(location) {
