@@ -29,7 +29,7 @@ var MapView = function() {
             //it is an array inside of an array.
             NApp.markerLocations = NApp.mapMarker[0];
 
-			for (var i = 0; i < results.length; i++) {
+			for (var i = 0, len = results.length; i < len; i++) {
 				self.createMarker(NApp.markerLocations[i]);
 			}
 
@@ -89,6 +89,10 @@ var MapView = function() {
     self.searchLocation = function(placeName) {
         var searchEntry = $('#wikiEntry');
         var searchUrl = 'http://api.duckduckgo.com/?q='+ placeName +'&format=json';
+        var searchRequestTimeout = setTimeout(function() {
+            searchEntry.text("fail to get related information");
+        }, 8000);
+
         $.ajax({
             url:searchUrl,
             async:true,
@@ -100,13 +104,16 @@ var MapView = function() {
                 var img = response.Image;
                 searchEntry.html('');
                 if (title.length === 0 || img.length === 0) {
-                    searchEntry.append('<h3>Sorry! There is no related information.</h3>')
+                    searchEntry.append('<h3>Sorry! There is no related information.</h3>');
                 } else {
-                    searchEntry.append('<h3>'+ title +'</h3><div>'+ text +'<img src="'+ img +'" alt="wiki img"></div>')
+                    searchEntry.append('<h3>'+ title +'</h3><div>'+ text +'<img src="'+ img +'" alt="wiki img"></div>');
                 }
-                ;
+                clearTimeout(searchRequestTimeout);
+            },
+            error: function() {
+                alert("error");
             }
-        })
+        });
     };
 
 
