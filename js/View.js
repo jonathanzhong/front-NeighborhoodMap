@@ -29,8 +29,6 @@ var MapView = function() {
             //it is an array inside of an array.
             NApp.markerLocations = NApp.mapMarker[0];
 
-
-
 			for (var i = 0; i < results.length; i++) {
 				self.createMarker(NApp.markerLocations[i]);
 			}
@@ -47,6 +45,7 @@ var MapView = function() {
 		var input = place.geometry.location;
         var contentString = place.vicinity;
 
+
         var marker = new google.maps.Marker({
             map: NApp.map,
             position: place.geometry.location,
@@ -62,32 +61,17 @@ var MapView = function() {
             }
         });
 
-
+        NApp.markers.push(marker);
 
         google.maps.event.addListener(marker, 'click', function() {
             var placeName = place.name;
-            var searchEntry = $('#wikiEntry');
             NApp.infowindow.setContent('<h3>'+ placeName +'</h3><p>'+ contentString +'</p>');
             NApp.infowindow.open(NApp.map, this);
 
             //When the marker is click, corresponding content will be display
-            var searchUrl = 'http://api.duckduckgo.com/?q='+ placeName +'&format=json';
-            $.ajax({
-                url:searchUrl,
-                async:true,
-                dataType: "jsonp",
-                success: function(response) {
-                    var title = response.Heading;
-                    var text = response.Abstract;
-                    var img = response.Image;
-                    searchEntry.html('');
-                    searchEntry.append('<h3>'+ title +'</h3><div>'+ text +'<img src="'+ img +'" alt="wiki img"></div>');
-                }
-            })
+            self.searchLocation(placeName);
 
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
+            // marker bounce when clicked
             if (marker.getAnimation() != null) {
                 marker.setAnimation(null);
             } else {
@@ -95,25 +79,55 @@ var MapView = function() {
                 //The star will keep bounce if we dont set time out
                 setTimeout(function(){ marker.setAnimation(null); }, 750);
             }
-        });
 
+
+        });
+    };
+
+
+    // Implement duckduckgo API to get information about the location
+    self.searchLocation = function(placeName) {
+        var searchEntry = $('#wikiEntry');
+        var searchUrl = 'http://api.duckduckgo.com/?q='+ placeName +'&format=json';
+        $.ajax({
+            url:searchUrl,
+            async:true,
+            dataType: "jsonp",
+            success: function(response) {
+                //console.log(response);
+                var title = response.Heading;
+                var text = response.Abstract;
+                var img = response.Image;
+                searchEntry.html('');
+                if (title.length === 0 || img.length === 0) {
+                    searchEntry.append('<h3>Sorry! There is no related information.</h3>')
+                } else {
+                    searchEntry.append('<h3>'+ title +'</h3><div>'+ text +'<img src="'+ img +'" alt="wiki img"></div>')
+                }
+                ;
+            }
+        })
     };
 
 
     self.setAllMap = function(map) {
-        for (var i = 0; i < NApp.markerLocations.length; i++) {
-            NApp.markerLocations[i].setMap(map);
+        for (var i = 0; i < NApp.markers.length; i++) {
+            NApp.markers[i].setMap(map);
         }
     };
     //Removes the markers from the map, but keeps them in the array.
     self.clearMarkers = function() {
-        self.sefAllMap(null);
+        self.setAllMap(null);
     };
     //Deletes all markers in the array by removing references to them.
     self.deleteMarkers = function() {
         self.clearMarkers();
-        NApp.markerLocations = [];
+        NApp.markers = new Array();
+    };
 
+    self.setMapCenter = function(location) {
+        NApp.map.setCenter(location);
+        NApp.map.panBy(0, 150);
     };
 
     //Responsive map with JavaScript;

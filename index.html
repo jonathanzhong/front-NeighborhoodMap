@@ -21,7 +21,7 @@
 
 <div id="content" class="container container-fluid">
     <div id="filter" class="row">
-        <input class="inputBox form-control" data-bind="inputSearchBox" placeholder="Filter the below places">
+        <input value="" class="inputBox form-control" data-bind="value: inputSearchBox, valueUpdate: 'afterkeydown'" placeholder="Filter the below places">
     </div>
 
     <div class="row">
@@ -37,7 +37,7 @@
                         <h3 data-bind="text: name">Location Name</h3>
                         <p>Address: <span data-bind="text: vicinity"></span></p>
                         <div class="btn-showMarker">
-                            <a href="#" class="pure-button pure-button-active pure-button-primary" data-bind="click: $parent.showMoreButtonClicked">Show Me On Map</a>
+                            <a href="#" id="buttonClickMarker" class="pure-button pure-button-active pure-button-primary" data-bind="click: $parent.buttonClickedShowMarker">Show Me On Map</a>
                         </div>
                     </div>
                 </script>

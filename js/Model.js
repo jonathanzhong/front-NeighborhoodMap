@@ -30,5 +30,6 @@ NApp.mapRequest = {
     type: ['neighborhood']
 };
 NApp.mapMarker = [];
+NApp.markers = [];
 NApp.markerLocations = null;
 NApp.infowindow;

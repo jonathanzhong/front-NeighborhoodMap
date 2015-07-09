@@ -10,8 +10,32 @@ var ViewModel = function() {
 
     self.locationLists = ko.observableArray();
     self.locationListsAll = null;
-    self.inputBoxText = ko.observable('');
+    self.inputSearchBox = ko.observable('');
+    self.locationListsNoMatch = ko.observable('false');
 
+    /**
+     * When button in the location list is clicked, show the marker and information.
+     * @param data
+     * @param event
+     */
+
+
+
+    self.buttonClickedShowMarker = function(data, event){
+        NApp.MapView.searchLocation(data.name);
+        NApp.MapView.deleteMarkers();
+
+        var marker = NApp.MapView.createMarker(data);
+
+        NApp.MapView.setMapCenter(data.geometry.location);
+    };
+    /**
+     * Place Input Filter Function.
+     * @param queryString
+     */
+    self.inputSearchBox.subscribe(function(data) {
+        self.updateLocationLists(data);
+    });
 
     self.updateLocationLists = function(queryString) {
         self.locationLists(self.locationListsAll);
@@ -22,13 +46,17 @@ var ViewModel = function() {
         var newArray = [];
         for (var i = 0; i < originalArrayLength; i++) {
             var nameLowerCase = originalArray[i].name.toLowerCase();
-            if (nameLowerCase.indexof(queryStringLowerCase) > -1) {
+            if (nameLowerCase.indexOf(queryStringLowerCase) > -1) {
                 newArray.push(originalArray[i]);
             }
         }
+        self.searchPlaceNoMatch(newArray);
         self.locationLists(newArray);
-        console.log(self.locationLists);
-    }
+    };
+
+    self.searchPlaceNoMatch = function(dataArray) {
+        self.locationListsNoMatch(dataArray.length === 0);
+    };
 };
 
 $(window).load(function() {
