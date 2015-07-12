@@ -1,5 +1,5 @@
 # front-NeighborhoodMap
-![](http://progressed.io/bar/90?title=Progress)
+![](http://progressed.io/bar/100?title=Progress)
 
 ## Project Overview:
 Develop a single page application featuring a map of your neighborhood or a neighborhood you would like to visit. Then add additional functionality to this map including highlighted locations, third-party data about those locations and various ways to browse the content.
@@ -18,5 +18,4 @@ Develop a single page application featuring a map of your neighborhood or a neig
 
 ## Instruction
 
-1. Clone this repo to your computer or download and unzip it.
-2. Run index.html on your localhost server.
+LiveDemo: http://neighborhoodmap.parseapp.com
